@@ -1,7 +1,7 @@
 <script>
 	import Nav from '../components/Nav.svelte';
+	import Loader from '../components/Loader.svelte';
 	import { stores } from '@sapper/app';
-	import Loader from './_Loader.svelte';
 
 	const { preloading } = stores();
 	export let segment;
