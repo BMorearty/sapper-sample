@@ -8,8 +8,6 @@
   let startTime; // When preloading started
 
   /**
-   * Easing function.
-   *
    * Full speed up to 50%
    * Half speed from 50%-90%
    * 1/10 speed from 90%-95%
@@ -32,7 +30,7 @@
   }
 
   /**
-   * Show the loader when we start preloading
+   * Show the loader when we start preloading.
    */
   $: if (!startTime && preloading) {
     startTime = Date.now();
@@ -63,9 +61,10 @@
   });
 </script>
 
-{#if preloading || progress}
-  <svg height="5" width="100%">
-    <line x1="0%" y1="0%" x2="{progress}%" y2="0%" style="stroke:red;stroke-width:1" />
+<!-- Show progress bar if loading has taken >50ms -->
+{#if progress > 5}
+  <svg height="1" width="100%">
+    <line x1="0%" y1="0%" x2="{progress}%" y2="100%" style="stroke:red;stroke-width:1" />
   </svg>
 {/if}
 
