@@ -1,3 +1,12 @@
+<script>
+	import { onMount } from 'svelte';
+
+	onMount(() => {
+		console.log('Fetching /set_session');
+		fetch('/set_session', { method: 'POST' });
+	});
+</script>
+
 <style>
 	h1, figure, p {
 		text-align: center;
