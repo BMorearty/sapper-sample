@@ -3,7 +3,7 @@
 
 	onMount(async () => {
 		console.log('Fetching /set_session');
-		const result = await fetch('/set_session', { method: 'GET' });
+		const result = await fetch('/api/set_session', { method: 'GET' });
 		console.log(await result.json());
 	});
 </script>
