@@ -5,5 +5,5 @@ export default function post(req: NowRequest, res: NowResponse) {
     `Setting cookie, isBrian = ${req.cookies.isBrian ? 'true' : 'false'}`
   );
   req.cookies.isBrian = 'true';
-  res.send('');
+  res.json({ isBrian: 'true' });
 }
