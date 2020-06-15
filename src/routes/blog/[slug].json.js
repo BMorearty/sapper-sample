@@ -10,7 +10,10 @@ export function get(req, res, next) {
 	// this file is called [slug].json.js
 	const { slug } = req.params;
 
-  res.setHeader('X-Is-Brian', req.session.isBrian ? 'true' : 'false');
+  res.setHeader(
+  	'X-Is-Brian',
+		(req.session && req.session.isBrian) || (req.cookies && req.cookies.isBrian === 'true') ? 'true' : 'false'
+	);
 
 	if (lookup.has(slug)) {
 		res.writeHead(200, {
