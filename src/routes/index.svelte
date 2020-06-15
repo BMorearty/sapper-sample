@@ -1,9 +1,10 @@
 <script>
 	import { onMount } from 'svelte';
 
-	onMount(() => {
+	onMount(async () => {
 		console.log('Fetching /set_session');
-		fetch('/set_session', { method: 'POST' });
+		const result = await fetch('/set_session', { method: 'GET' });
+		console.log(await result.json());
 	});
 </script>
 
