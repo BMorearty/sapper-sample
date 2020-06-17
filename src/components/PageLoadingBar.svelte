@@ -11,7 +11,7 @@
   /**
    * Start out fast and get progressively slower. Stop at 99%.
    */
-  function slowdown() {
+  function advance() {
     if (progress < 50) {
       progress += 0.5;
     } else if (progress < 90) {
@@ -30,7 +30,7 @@
    */
   $: if (!startTime && loading) {
     startTime = Date.now();
-    interval = setInterval(() => slowdown(), 10);
+    interval = setInterval(() => advance(), 10);
   }
 
   /**
@@ -57,7 +57,7 @@
   });
 </script>
 
-<!-- Show progress bar if loading has taken >50ms -->
+<!-- Show progress bar if loading has taken >100ms -->
 {#if progress > 5}
   <svg height="1" width="100%">
     <line x1="0%" y1="0%" x2="{progress}%" y2="100%" style="stroke:{color};stroke-width:1" />
