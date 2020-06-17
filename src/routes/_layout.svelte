@@ -1,6 +1,6 @@
 <script>
 	import Nav from '../components/Nav.svelte';
-	import Loader from '../components/Loader.svelte';
+	import PageLoadingBar from '../components/PageLoadingBar.svelte';
 	import { stores } from '@sapper/app';
 
 	const { preloading } = stores();
@@ -18,7 +18,7 @@
 	}
 </style>
 
-<Loader loading="{$preloading}"/>
+<PageLoadingBar loading="{$preloading}"/>
 
 <Nav {segment}/>
 
