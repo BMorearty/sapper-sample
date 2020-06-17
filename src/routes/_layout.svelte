@@ -18,7 +18,7 @@
 	}
 </style>
 
-<Loader preloading="{$preloading}"/>
+<Loader loading="{$preloading}"/>
 
 <Nav {segment}/>
 

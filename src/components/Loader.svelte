@@ -1,19 +1,15 @@
 <script>
   import { onDestroy } from 'svelte';
 
-  export let preloading; // Currently preloading?
+  export let loading; // Boolean: currently loading?
+  export let color = 'red'; // E.g., 'blue' or '#3399ff'
 
   let interval; // SetInterval handle
   let progress = 0; // Current progress on the loading bar, from 0 to 100
-  let startTime; // When preloading started
+  let startTime; // When loading started
 
   /**
-   * Full speed up to 50%
-   * Half speed from 50%-90%
-   * 1/10 speed from 90%-95%
-   * Slower from 95-97%
-   * Slower still from 97-99%
-   * Stop advancing at 95%
+   * Start out fast and get progressively slower. Stop at 99%.
    */
   function slowdown() {
     if (progress < 50) {
@@ -30,19 +26,19 @@
   }
 
   /**
-   * Show the loader when we start preloading.
+   * Show the loader when we start loading.
    */
-  $: if (!startTime && preloading) {
+  $: if (!startTime && loading) {
     startTime = Date.now();
     interval = setInterval(() => slowdown(), 10);
   }
 
   /**
-   * Stop the loader when preloading is done. If preloading took >200ms, make
+   * Stop the loader when loading is done. If loading took >200ms, make
    * the loader momentarily go to 100 to show that the page is done loading.
    * Otherwise the page loaded quickly, like hitting the Back button.
    */
-  $: if (startTime && !preloading) {
+  $: if (startTime && !loading) {
     clearInterval(interval);
     interval = undefined;
     if (Date.now() - startTime > 200) {
@@ -64,7 +60,7 @@
 <!-- Show progress bar if loading has taken >50ms -->
 {#if progress > 5}
   <svg height="1" width="100%">
-    <line x1="0%" y1="0%" x2="{progress}%" y2="100%" style="stroke:red;stroke-width:1" />
+    <line x1="0%" y1="0%" x2="{progress}%" y2="100%" style="stroke:{color};stroke-width:1" />
   </svg>
 {/if}
 
