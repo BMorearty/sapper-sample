@@ -9,7 +9,7 @@
       data = await res.json();
     } catch (err) {
       // If the page isn't found it will return HTML, not JSON.
-      // this.error(404, 'Not found');
+      // By just returning, we’ll show the standard 404 page inside the page template.
       return;
     }
 
